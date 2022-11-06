@@ -16,13 +16,14 @@ int main()
 	
 	cout << "\n\nWelcome to a game of Tic Tac Toe!\n\n";
 
-	cout << "Here is the board\n";
-	cout << "1|2|3\n"
-			"4|5|6\n"
-			"7|8|9\n";
+	
 
 	do
 	{
+		cout << "Here is the board\n";
+		cout << "1|2|3\n"
+				"4|5|6\n"
+				"7|8|9\n";
 		cout << "For player 1, Pick X or O\n";
 		cin >> first_player;
 
@@ -37,6 +38,16 @@ int main()
 			game.mark_board(position);
 
 		}
+
+		if( game.get_winner() == "X")
+		{
+			cout << "Player X wins!";
+		}
+		else if(game.get_winner() == "O")
+		{
+			cout << "Player O wins!";
+		}
+		else{cout << "Its a TIE!";}
 
 		game.display_board();
 

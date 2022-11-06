@@ -5,9 +5,28 @@ using std::cout;
 
 bool TicTacToe::game_over()
 {
+    bool win;
 
-    return check_board_full();
+    if(check_row_win() == true|| check_column_win() == true|| check_diagonal_win() == true)
+    {
 
+        set_winner();
+        win = true;
+
+    }
+    else if(check_board_full())
+    {
+
+        winner = "C";
+        win = true;
+
+    }
+    else
+    {
+        win = false;
+    }
+
+    return win;
 }
 
 void TicTacToe::start_game(string first_player)
@@ -20,7 +39,7 @@ void TicTacToe::start_game(string first_player)
         if (first_player == "x" || first_player == "X" || first_player == "O" || first_player == "o")
         {
 
-            first_player = player;
+            player = first_player;
             xo_loop = 1;
         }
         else
@@ -107,5 +126,104 @@ void TicTacToe::clear_board()
     {
         peg = " ";
     }
+
+}
+
+string TicTacToe::get_winner()
+{
+    return winner;
+}
+
+/*
+Ref to board
+0|1|2
+3|4|5
+6|7|9
+*/
+
+bool TicTacToe::check_column_win()
+{
+
+    bool win;
+
+    if(pegs[0] != " " && pegs[0] == pegs[3] && pegs[3] == pegs[6])
+    {
+        win = true;
+    }
+    else if(pegs[1] != " " && pegs[1] == pegs[4] && pegs[4] == pegs[7])
+    {
+        win = true;
+    }
+    else if(pegs[2] != " " && pegs[2] == pegs[5] && pegs[5] == pegs[9])
+    {
+        win = true;
+    }
+    else{win = false;}
+
+    return win;
+}
+
+/*
+Ref to board
+0|1|2
+3|4|5
+6|7|9
+*/
+
+bool TicTacToe::check_row_win()
+{
+
+    bool win;
+
+    if(pegs[0] != " " && pegs[0] == pegs[1] && pegs[1] == pegs[2])
+    {
+        win = true;
+    }
+    else if(pegs[3] != " " && pegs[3] == pegs[4] && pegs[4] == pegs[5])
+    {
+        win = true;
+    }
+    else if(pegs[6] != " " && pegs[6] == pegs[7] && pegs[7] == pegs[8])
+    {
+        win = true;
+    }
+    else{win = false;}
+    
+    return win;
+}
+
+/*
+Ref to board
+0|1|2
+3|4|5
+6|7|9
+*/
+
+bool TicTacToe::check_diagonal_win()
+{
+
+    bool win;
+
+    if(pegs[0] != " " && pegs[0] == pegs[4] && pegs[4] == pegs[9])
+    {
+        win = true;
+    }
+    else if(pegs[2] != " " && pegs[2] == pegs[4] && pegs[4] == pegs[6])
+    {
+        win = true;
+    }
+    else{win = false;}
+
+    return win;
+}
+
+void TicTacToe::set_winner()
+{
+
+    if(player == "X")
+    {
+        winner = "O";
+    }
+    else{winner = "X";}
 
 }
