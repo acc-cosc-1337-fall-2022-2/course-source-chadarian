@@ -4,10 +4,14 @@
 
 using std::string;
 using std::vector;
+using std::ostream;
+using std::istream;
+
+#ifndef TicTacToe_H
+#define TicTacToe_H
 
 class TicTacToe
 {
-
     vector<string> pegs {" ", " ", " ", " ", " ", " ", " ", " ", " ", }; //9 spaces
     string player;
     string winner;
@@ -17,8 +21,9 @@ public:
     void start_game(string first_player);
     void mark_board(int position);
     string get_player() const;
-    void display_board() const;
     string get_winner();
+    friend ostream& operator<<(ostream& out, const TicTacToe& game);
+    friend istream& operator>>(istream& in, TicTacToe& game);
 
 private:
     void set_next_player();
@@ -30,3 +35,4 @@ private:
     void set_winner();
 
 };
+#endif
