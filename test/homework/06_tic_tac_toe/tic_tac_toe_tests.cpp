@@ -2,6 +2,10 @@
 #include "catch.hpp"
 #include "tic_tac_toe.h"
 #include "tic_tac_toe_manager.h"
+#include "tic_tac_toe_3.h"
+#include "tic_tac_toe_4.h"
+
+using std::make_unique;
 
 TEST_CASE("Verify Test Configuration", "verification") {
 	REQUIRE(true == true);
@@ -34,7 +38,7 @@ TEST_CASE("Test game over if 9 slots are selected")
 	game.mark_board(9);
 	game.game_over();
 
-	REQUIRE(game.get_winner() == "C");
+	REQUIRE(game->get_winner() == "C");
 }
 
 TEST_CASE("Test first player set to X")

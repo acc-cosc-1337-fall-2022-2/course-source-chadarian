@@ -207,14 +207,19 @@ void TicTacToe::set_winner()
 
 ostream& operator<<(ostream& out, const TicTacToe& game)
 {
-    for(int i = 0; i < game.pegs.size(); i++)
+    if(game.pegs.size() == 9)
     {
-        out << game.pegs[i];
-        if (i == 2 || i == 5 || i == 8)
-        {
-            out << '\n';
-        }
-        else{out << '|';}
+        out << game.pegs[0] << "|" << game.pegs[1] << "|" << game.pegs[2] << "\n";
+        out << game.pegs[3] << "|" << game.pegs[4] << "|" << game.pegs[5] << "\n";
+        out << game.pegs[6] << "|" << game.pegs[7] << "|" << game.pegs[8] << "\n";
+    }
+    else
+    {
+        out << game.pegs[0] << "|" << game.pegs[1] << "|" << game.pegs[2] << game.pegs[3] << "\n";
+        out << game.pegs[4] << "|" << game.pegs[5] << "|" << game.pegs[6] << game.pegs[7] << "\n";
+        out << game.pegs[8] << "|" << game.pegs[9] << "|" << game.pegs[10] << game.pegs[11] << "\n";
+        out << game.pegs[12] << "|" << game.pegs[13] << "|" << game.pegs[14] << game.pegs[15] << "\n";
+
     }
 
     return out;
@@ -230,4 +235,6 @@ istream &operator>>(istream &in, TicTacToe &game)
 
     return in;
 }
+
+TicTacToe::TicTacToe(int size): pegs(size*size, " "){}
 
